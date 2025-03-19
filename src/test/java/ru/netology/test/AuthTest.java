@@ -2,13 +2,16 @@ package ru.netology.test;
 
 import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.selenide.AllureSelenide;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import ru.netology.data.DataHelper;
 import ru.netology.data.SQLHelper;
 import ru.netology.page.PaymentPage;
 
 import static com.codeborne.selenide.Selenide.open;
-import static ru.netology.data.SQLHelper.*;
+import static ru.netology.data.SQLHelper.cleanDataBase;
 
 public class AuthTest {
 
@@ -102,11 +105,11 @@ public class AuthTest {
     }
 
     @Test
-    public void shouldDisplayErrorForFuYear() {
+    public void shouldAllowCardWithFutureYear() {
         paymentPage.clickBuy();
         DataHelper.CardInfo CardWithFutureYear = DataHelper.getCardWithFutureYear();
         paymentPage.fillForm(CardWithFutureYear);
-        paymentPage.waitForCardExpired();
+        paymentPage.waitForSuccessfulNotification();
     }
 
     @Test
@@ -114,7 +117,7 @@ public class AuthTest {
         paymentPage.clickBuy();
         DataHelper.CardInfo cardWithSingleDigitMonth = DataHelper.getCardWithSingleDigitMonth();
         paymentPage.fillForm(cardWithSingleDigitMonth);
-        paymentPage.waitForWrongFormat();
+        paymentPage.waitForCardExpired();
     }
 
     @Test

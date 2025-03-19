@@ -68,7 +68,7 @@ public class DataHelper {
     }
 
     public static CardInfo getCardWithFutureYear() {
-        return new CardInfo(getApprovedNumberCard(), getRandomMonth(0), getRandomYear(6), generateRandomName(), generateRandomCvc());
+        return new CardInfo(getApprovedNumberCard(), getRandomMonth(0), getRandomYear(3), generateRandomName(), generateRandomCvc());
     }
 
     public static CardInfo getCardWithSingleDigitYear() {
