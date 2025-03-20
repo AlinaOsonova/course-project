@@ -117,7 +117,7 @@ public class AuthTest {
         paymentPage.clickBuy();
         DataHelper.CardInfo cardWithSingleDigitMonth = DataHelper.getCardWithSingleDigitMonth();
         paymentPage.fillForm(cardWithSingleDigitMonth);
-        paymentPage.waitForWrongFormat();
+        paymentPage.waitForCardExpired();
     }
 
     @Test
