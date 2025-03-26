@@ -113,6 +113,14 @@ public class AuthTest {
     }
 
     @Test
+    public void shouldAllowSingleDigitYear() {
+        paymentPage.clickBuy();
+        DataHelper.CardInfo CardWithSingleDigitYear = DataHelper.getCardWithSingleDigitYear();
+        paymentPage.fillForm(CardWithSingleDigitYear);
+        paymentPage.waitForWrongFormat();
+    }
+
+    @Test
     public void shouldAllowSingleDigitMonth() {
         paymentPage.clickBuy();
         DataHelper.CardInfo cardWithSingleDigitMonth = DataHelper.getCardWithSingleDigitMonth();
@@ -157,6 +165,14 @@ public class AuthTest {
         paymentPage.clickBuy();
         DataHelper.CardInfo cardWithZeroCVC = DataHelper.getCardWithZeroCvc();
         paymentPage.fillForm(cardWithZeroCVC);
+        paymentPage.waitForWrongFormat();
+    }
+
+    @Test
+    public void shouldDisplayErrorForZeroCard() {
+        paymentPage.clickBuy();
+        DataHelper.CardInfo CardWithAllZeros = DataHelper.getCardWithAllZeros();
+        paymentPage.fillForm(CardWithAllZeros);
         paymentPage.waitForWrongFormat();
     }
 
